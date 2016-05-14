@@ -1,0 +1,19 @@
+{
+  "name": "hidden-city",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gromkii/hidden-city.git"
+  },
+  "author": "Dax Richardson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gromkii/hidden-city/issues"
+  },
+  "homepage": "https://github.com/gromkii/hidden-city#readme"
+}
