@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/gromkii/hidden-city/issues"
   },
-  "homepage": "https://github.com/gromkii/hidden-city#readme"
+  "homepage": "https://github.com/gromkii/hidden-city#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
