@@ -1,0 +1,9 @@
+{
+  "firebase": "hidden-city-brews",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
