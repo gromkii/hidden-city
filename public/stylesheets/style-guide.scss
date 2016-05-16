@@ -11,55 +11,65 @@ $sans-serif-font: 'Raleway', sans-serif;
 
 body {
   background-color: $color3;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
 }
 
+section {
+  margin:10px;
+}
 
 
 .colors {
-  .circle {
+  div {
     width:100px;
     height:100px;
-    border-radius:5px;
+    border-radius:50%;
     float:left;
-
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border:1px solid white;
+    margin:2px;
   }
 
-  .circle.1 {
+  .circle1 {
     background-color: $color1;
   }
-
-  .2 {
+  .circle2 {
     background-color: $color2;
   }
-
-  .3 {
+  .circle3 {
     background-color: $color3;
   }
-
-  .4 {
+  .circle4 {
     background-color: $color4;
   }
-
-  .5 {
+  .circle5 {
     background-color: $color5;
   }
+
 }
+
 
 h1, h2, h3 {
   font-family: $serif-font;
   color: $color5;
+  margin:10px auto;
+  text-align: center;
 }
 
 h1 {
-  font-size:2em;
+  font-size:4em;
 }
 
 h2 {
-  font-size:1.5em;
+  font-size:3em;
 }
 
 h3 {
-  font-size:1em;
+  font-size:1.5em;
 }
 
 .lists {
@@ -67,18 +77,22 @@ h3 {
   color:$color3;
   width:60%;
   padding:10px;
+  box-sizing: border-box;
 
   h3 {
     color:$color3;
     letter-spacing: 1.5px;
     margin-left:15px;
+    text-align: left;
+    margin-top:5px;
+
   }
 
   ul {
     margin:0 auto;
     display:flex;
     flex-direction: column;
-    width:75%;
+    width:60%;
   }
 
   li {
@@ -88,5 +102,82 @@ h3 {
 
   li:nth-child(odd){
     background-color: $color4;
+  }
+
+  .labelInfo {
+    height:250px;
+    width:250px;
+    background-image:url('http://www.placecage.com/250/250');
+    float:left;
+    margin-right: 10px;
+
+    &:after {
+      clear:both;
+    }
+  }
+}
+
+.images {
+  width:60%;
+  margin:5px;
+  padding:15px;
+  background-color:$color5;
+  box-sizing: border-box;
+  display:flex;
+  justify-content: center;
+
+  .previewObject {
+    text-align: center;
+    justify-content: center;
+
+    h3 {
+      color:$color3;
+    }
+  }
+
+  .preview {
+    margin:5px;
+    height:200px;
+    width:200px;
+    background-image:url('http://placecage.com/200/200');
+    background-size:cover;
+    float:left;
+    transition: all 1s;
+    box-shadow: 0 5px 5px $color3;
+    margin-bottom:15px;
+    -webkit-filter:grayscale(100%);
+
+    &:hover {
+      height:275px;
+      width:275px;
+      background-color:$color4;
+      -webkit-filter:grayscale(0%);;
+    }
+
+  }
+}
+
+.landing {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image:url('https://images.unsplash.com/photo-1437326516294-01d0da392e11?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=5fd871029d3b4011e04f09d533fea68e');
+  background-size: cover;
+  width:60%;
+  height:75vh;
+
+  h1,h2 {
+    text-shadow: 2px 2px $color3;
+  }
+
+  form {
+    width:60%;
+
+    input[type=text] {
+      border-radius: 5%;
+      width:100%;
+
+    }
   }
 }
