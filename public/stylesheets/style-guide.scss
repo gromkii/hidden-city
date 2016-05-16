@@ -98,10 +98,12 @@ h3 {
   li {
     list-style-type: none;
     padding:5px;
+    margin:1px;
   }
 
   li:nth-child(odd){
     background-color: $color4;
+    color:$color5;
   }
 
   .labelInfo {
@@ -114,6 +116,26 @@ h3 {
     &:after {
       clear:both;
     }
+  }
+
+  .backButton {
+    background-color:$color1;
+    color:$color5;
+    width:50px;
+    border-radius: 10%;
+    padding:5px;
+    text-align: center;
+    float:right;
+    align-self: flex-end;
+    transition: all ease 500ms;
+
+     &:hover {
+       background-color: $color4
+     }
+
+     &:after {
+       clear:both;
+     }
   }
 }
 
@@ -148,8 +170,8 @@ h3 {
     -webkit-filter:grayscale(100%);
 
     &:hover {
-      height:275px;
-      width:275px;
+      height:250px;
+      width:250px;
       background-color:$color4;
       -webkit-filter:grayscale(0%);;
     }
