@@ -99,12 +99,18 @@ h3 {
     list-style-type: none;
     padding:5px;
     margin:1px;
+
+    &:nth-child(odd){
+      background-color: $color4;
+      color:$color5;
+    }
+
+    &:hover{
+      background-color: $color1;
+      color:$color5;
+    }
   }
 
-  li:nth-child(odd){
-    background-color: $color4;
-    color:$color5;
-  }
 
   .labelInfo {
     height:250px;
