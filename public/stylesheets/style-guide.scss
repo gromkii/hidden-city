@@ -1,0 +1,92 @@
+//Establish variables!
+
+$color1: #ed6a5a; //rgba(237, 106, 90, 100)
+$color2: #f4f1bb; //rgba(244, 241, 187, 100)
+$color3: #575761; //rgba(155, 193, 188, 100)
+$color4: #5ca4a9; //rgba(92, 164, 169, 100)
+$color5: #e6ebe0; //rgba(230, 235, 224, 100)
+$serif-font: 'Quattrocento', serif;
+$sans-serif-font: 'Raleway', sans-serif;
+
+
+body {
+  background-color: $color3;
+}
+
+
+
+.colors {
+  .circle {
+    width:100px;
+    height:100px;
+    border-radius:5px;
+    float:left;
+
+  }
+
+  .circle.1 {
+    background-color: $color1;
+  }
+
+  .2 {
+    background-color: $color2;
+  }
+
+  .3 {
+    background-color: $color3;
+  }
+
+  .4 {
+    background-color: $color4;
+  }
+
+  .5 {
+    background-color: $color5;
+  }
+}
+
+h1, h2, h3 {
+  font-family: $serif-font;
+  color: $color5;
+}
+
+h1 {
+  font-size:2em;
+}
+
+h2 {
+  font-size:1.5em;
+}
+
+h3 {
+  font-size:1em;
+}
+
+.lists {
+  background-color:$color5;
+  color:$color3;
+  width:60%;
+  padding:10px;
+
+  h3 {
+    color:$color3;
+    letter-spacing: 1.5px;
+    margin-left:15px;
+  }
+
+  ul {
+    margin:0 auto;
+    display:flex;
+    flex-direction: column;
+    width:75%;
+  }
+
+  li {
+    list-style-type: none;
+    padding:5px;
+  }
+
+  li:nth-child(odd){
+    background-color: $color4;
+  }
+}
