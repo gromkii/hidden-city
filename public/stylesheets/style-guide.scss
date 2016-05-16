@@ -99,6 +99,7 @@ h3 {
     list-style-type: none;
     padding:5px;
     margin:1px;
+    transition: all ease 500ms;
 
     &:nth-child(odd){
       background-color: $color4;

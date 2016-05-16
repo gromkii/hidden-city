@@ -63,7 +63,8 @@ h3 {
   .lists li {
     list-style-type: none;
     padding: 5px;
-    margin: 1px; }
+    margin: 1px;
+    transition: all ease 500ms; }
     .lists li:nth-child(odd) {
       background-color: #5ca4a9;
       color: #e6ebe0; }
