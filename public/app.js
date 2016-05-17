@@ -1,14 +1,13 @@
+var BreweryDb = require('brewerydb-node');
+var brewdb = new BreweryDb('44665a51583c7e1afe237d1dfa5c45b9');
+
 $('#searchForm').on('submit',function(event){
   event.preventDefault();
 
-  var searchText = ($('#searchItem').val());
+  var searchItem = ($('#searchItem').val());
   $('#searchItem').val('').fadeOut('slow');
 
-  var beerQuery = $.ajax({
-    type:'GET',
-    dataType:'json',
-    url: 'https://api.brewerydb.com/v2/search?q=' + searchText + '&key=44665a51583c7e1afe237d1dfa5c45b9&format=json'
-  });
+  brewdb.search.all({q:searchItem});
 
   beerQuery.done(function(data){
     console.log(data);

@@ -161,7 +161,6 @@ h3 {
       transition: all ease 500ms;
       padding: 15px; }
       .navbar ul li:hover {
-        color: #575761;
         background-color: #ed6a5a;
         cursor: default; }
 
