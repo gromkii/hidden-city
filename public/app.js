@@ -7,9 +7,8 @@ $('#searchForm').on('submit',function(event){
   var searchItem = ($('#searchItem').val());
   $('#searchItem').val('').fadeOut('slow');
 
-  brewdb.search.all({q:searchItem});
-
-  beerQuery.done(function(data){
-    console.log(data);
+  brewdb.search.all({q:searchItem}, function(req,res){
+    console.log(res);
   });
+
 });
