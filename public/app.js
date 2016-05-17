@@ -1,4 +1,4 @@
-var idArray;
+var resultsArray;
 
 
 $(document).ready(function(){
@@ -27,9 +27,9 @@ function initialSearch(event){
   }).done(pushData);
 }
 
-//Pushes the IDs of the search results back to the array "idArray" for use later.
+//Pushes the IDs of the search results back to the array "resultsArray" for use later.
 function pushData(data){
-  var idArray    = [],
+  var resultsArray    = [],
       newArray   = data,
       maxResults = 20;
 
@@ -40,7 +40,7 @@ function pushData(data){
   }
 
   for (var i = 0; i < maxResults; i++){
-    idArray.push(data.data[i].id);
+    resultsArray.push(data.data[i].id);
   }
 
   console.log(idArray);
