@@ -1,6 +1,4 @@
-
-// var BreweryDb = require('brewerydb-node'),
-//     brew      = new BreweryDb(44665a51583c7e1afe237d1dfa5c45b9);
+var idArray;
 
 
 $(document).ready(function(){
@@ -12,60 +10,39 @@ $(document).ready(function(){
 function initialSearch(event){
   event.preventDefault();
 
-
-  // Link submission to an request in a listening server.
-
-  // CORS anywhere test.
-
-  var corsTest = jQuery.ajaxPrefilter(function(options) {
-    if (options.crossDomain && jQuery.support.cors) {
-        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
-    }
+  var searchItem = $("#searchItem").val();
+  $('#searchItem').fadeOut('slow');
+  $('.landing h2').slideUp('slow');
+  $('.landing h1').slideUp('slow',function(){
+    $('.landing').fadeOut('slow');
   });
 
-  var urlTest = 'https://galvanize-cors-proxy.herokuapp.com/https://api.brewerydb.com/v2/locations?key=44665a51583c7e1afe237d1dfa5c45b9&format=json';
+
+  var urlTest = 'https://galvanize-cors-proxy.herokuapp.com/https://api.brewerydb.com/v2/search?q='+ searchItem +'&withLocations=Y&key=44665a51583c7e1afe237d1dfa5c45b9&format=json';
 
   var ajaxTest = $.ajax({
     type:'GET',
     dataType:'json',
     url:urlTest
-  }).done(function(data){
-    console.log(data);
-  });
-
-  // corsTest({
-  //   method:'GET',
-  //   url: 'https://api.brewerydb.com/v2/locations?key=44665a51583c7e1afe237d1dfa5c45b9&format=json',
-  // }, function(data){
-  //   console.log(data);
-  // });
+  }).done(pushData);
 }
 
+//Pushes the IDs of the search results back to the array "idArray" for use later.
+function pushData(data){
+  var idArray    = [],
+      newArray   = data,
+      maxResults = 20;
 
-function generateLanding() {
-  var landing = React.createClass({
-    render: function () {
-      return React.createElement(
-        "section",
-        { "class": "landing" },
-        React.createElement(
-          "h1",
-          null,
-          "Hidden City Brews"
-        ),
-        React.createElement(
-          "h2",
-          null,
-          "Where do you wanna go?"
-        ),
-        React.createElement(
-          "form",
-          { id: "searchForm" },
-          React.createElement("input", { type: "text", id: "searchItem", name: "searchField" })
-        )
-      );
-    }
-  });
+  if (newArray.length < 20 && newArray.length > 0) {
 
-  ReactDOM.render(React.createElement(landing, null), document.querySelector('body'));
+  } else if (newArray.length <= 0) {
+    console.log('No results found.');
+  }
+
+  for (var i = 0; i < maxResults; i++){
+    idArray.push(data.data[i].id);
+  }
+
+  console.log(idArray);
+
 }
