@@ -20,12 +20,12 @@ function initialSearch(event){
   });
 
 
-  var urlTest = 'https://galvanize-cors-proxy.herokuapp.com/https://api.brewerydb.com/v2/search?q='+ searchItem +'&withLocations=Y&type=brewery&key=44665a51583c7e1afe237d1dfa5c45b9&format=json';
+  var firstQuery = 'https://galvanize-cors-proxy.herokuapp.com/https://api.brewerydb.com/v2/search?q='+ searchItem +'&withLocations=Y&type=brewery&key=44665a51583c7e1afe237d1dfa5c45b9&format=json';
 
   var ajaxTest = $.ajax({
     type:'GET',
     dataType:'json',
-    url:urlTest
+    url:firstQuery
   }).done(pushData);
 }
 
@@ -33,20 +33,40 @@ function initialSearch(event){
 function pushData(data){
   var resultsArray = data.data;
 
-  $('<section class="images">').appendTo('main');
+  $('<section class="images">').appendTo('main').hide().fadeIn('slow');
 
-  resultsArray.forEach(function(element){
+  resultsArray.forEach(generateBeerPreview);
+
+  $('</section>').appendTo('main');
+
+  $('.images').on('click','.previewObject',getBeerInfo);
+
+
+}
+
+function generateBeerPreview(element, index){
+  setTimeout(function(){
     var self = element.id;
-    $('<div class="previewObject" id="' + self + '">').appendTo('.images');
+    $('<div class="previewObject" id="' + self + '">').appendTo('.images').hide().fadeIn('slow');
     if (element.hasOwnProperty('images')) {
       $('<img class="preview" src="' + element.images.squareMedium +'">').appendTo('#' + self);
     } else {
-      $('<div class="preview"></div>').appendTo('#' + self);
+      $('<div class="preview">No Preview</div>').appendTo('#' + self);
     }
-
     $('<h3>' + element.name + '</h3>').appendTo('#' + self);
     $('</div>').appendTo(self);
-  });
 
+  }, index * 200);
+}
 
+function getBeerInfo(event){
+ var getId = $(this).attr('id'),
+     beerQuery = 'https://galvanize-cors-proxy.herokuapp.com/https://api.brewerydb.com/v2/brewery/'+ getId +'/beers&key=44665a51583c7e1afe237d1dfa5c45b9&format=json',
+     infoQuery = $.ajax({
+       type:'GET',
+       dataType:'json',
+       url:beerQuery
+     }).done(function(data){
+       console.log(data);
+     });
 }
