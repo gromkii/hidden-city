@@ -23,7 +23,7 @@ function initialSearch(event){
   });
 
 
-  var firstQuery = 'https://galvanize-cors-proxy.herokuapp.com/https://api.brewerydb.com/v2/search?q='+ searchItem +'&withLocations=Y&type=brewery&key=44665a51583c7e1afe237d1dfa5c45b9&format=json';
+  var firstQuery = 'http://dax-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/search?q='+ searchItem +'&withLocations=Y&type=brewery&key=44665a51583c7e1afe237d1dfa5c45b9&format=json';
 
   var ajaxTest = $.ajax({
     type:'GET',
@@ -71,12 +71,12 @@ function generateAboutPage(){
 }
 
 function generateContactPage(){
-  
+
 }
 
 function getBeerInfo(event){
  var getId = $(this).attr('id'),
-     beerQuery = 'https://galvanize-cors-proxy.herokuapp.com/https://api.brewerydb.com/v2/brewery/'+ getId +'/beers?key=44665a51583c7e1afe237d1dfa5c45b9&format=json',
+     beerQuery = 'http://dax-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/brewery/'+ getId +'/beers?key=44665a51583c7e1afe237d1dfa5c45b9&format=json',
      infoQuery = $.ajax({
        type:'GET',
        dataType:'json',
