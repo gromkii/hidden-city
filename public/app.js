@@ -4,6 +4,9 @@ var resultsArray;
 $(document).ready(function(){
 
   $('form').on('submit', initialSearch);
+  $('#home').on('click', generateHomePage);
+  $('#about').on('click', generateAboutPage);
+  $('#contact').on('click', generateContactPage);
 
 });
 
@@ -59,14 +62,26 @@ function generateBeerPreview(element, index){
   }, index * 200);
 }
 
+function generateHomePage(){
+
+}
+
+function generateAboutPage(){
+
+}
+
+function generateContactPage(){
+  
+}
+
 function getBeerInfo(event){
  var getId = $(this).attr('id'),
-     beerQuery = 'https://galvanize-cors-proxy.herokuapp.com/https://api.brewerydb.com/v2/brewery/'+ getId +'/beers&key=44665a51583c7e1afe237d1dfa5c45b9&format=json',
+     beerQuery = 'https://galvanize-cors-proxy.herokuapp.com/https://api.brewerydb.com/v2/brewery/'+ getId +'/beers?key=44665a51583c7e1afe237d1dfa5c45b9&format=json',
      infoQuery = $.ajax({
        type:'GET',
        dataType:'json',
        url:beerQuery
      }).done(function(data){
-       console.log(data);
+       console.log(data); //data.data is an array.
      });
 }
