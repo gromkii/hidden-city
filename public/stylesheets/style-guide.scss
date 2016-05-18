@@ -140,20 +140,27 @@ h3 {
 }
 
 .images {
-  width:60%;
-  margin:5px;
+  height:100%;
+  width:100%;
+  margin:0px;
   padding:15px;
   background-color:$color5;
   box-sizing: border-box;
   display:flex;
   justify-content: center;
+  flex-wrap:wrap;
 
   .previewObject {
+    display:flex;
     text-align: center;
-    justify-content: center;
+    align-items: center;
+    margin:20px;
+    flex-direction: column;
+    width:20%;
 
     h3 {
       color:$color3;
+      clear:both;
     }
   }
 
@@ -161,17 +168,16 @@ h3 {
     margin:5px;
     height:200px;
     width:200px;
-    background-image:url('http://placecage.com/200/200');
-    background-size:cover;
     float:left;
-    transition: all 1s;
+    transition: all ease 500ms;
     box-shadow: 0 5px 5px $color3;
     margin-bottom:15px;
     -webkit-filter:grayscale(100%);
 
+
     &:hover {
-      height:250px;
-      width:250px;
+      height:225px;
+      width:225px;
       background-color:$color4;
       -webkit-filter:grayscale(0%);;
     }
@@ -184,9 +190,10 @@ h3 {
   flex-direction:column;
   align-items: center;
   justify-content: center;
-  background-image:url('https://images.unsplash.com/photo-1437326516294-01d0da392e11?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=5fd871029d3b4011e04f09d533fea68e');
+  background-image:url('https://images.unsplash.com/photo-1453282716202-de94e528067c?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=ac9b38e57a8a0724058cdcbe6a687aa8');
+  // https://images.unsplash.com/photo-1437326516294-01d0da392e11?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=5fd871029d3b4011e04f09d533fea68e
   background-size: cover;
-  height:85vh;
+  height:95vh;
   width:100%;
   // transition: all ease 1s;ß
 
@@ -208,30 +215,25 @@ h3 {
 
 .navbar {
   width:100%;
-  display:flex;
-  align-items: center;
-  margin:0;
-  float:left;
-  flex-flow: row;
+  height:5vh;
   font-family:$serif-font;
-  background-color:rgba(0,0,0,0);
 
   ul {
     color:$color5;
     height:100%;
     margin:0;
+    overflow: hidden;
+    flex-flow:row;
 
-    box-sizing: border-box;
 
     li {
+      display: inline-flex;
+      align-items: center;
       height:100%;
-      display:inline-block;
-      float:left;
-      padding:0px;
       font-size:1.25em;
-      padding-right:2rem;
+      padding:0 2rem;
       transition: all ease 500ms;
-      padding:15px;
+      margin:0;
 
       &:hover {
         background-color:$color1;

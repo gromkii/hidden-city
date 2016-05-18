@@ -7,6 +7,8 @@ function generatePreviews(){
       //Also will contain a previewText h3 with data. name
 
   //After looping through, render the resultsArray, fade in if possible.
+
+  
 }
 
 function generateBeerList(){
