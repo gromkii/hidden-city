@@ -1,4 +1,5 @@
-var resultsArray;
+var resultsArray,
+    brewURL;
 
 
 $(document).ready(function(){
@@ -94,6 +95,8 @@ function generateAboutPage(){
 }
 
 function generateContactPage(){
+  $('section').fadeOut('slow');
+
   var profileURL;
   var githubProfile = $.ajax({
     type:'GET',
@@ -108,19 +111,23 @@ function generateContactPage(){
         return React.createElement(
           "section",
           { className: "lists" },
-          React.createElement("img", { className: "labelInfo", src: profileURL }),
           React.createElement(
-            "h2",
-            null,
-            "Find me on GitHub: gromkii"
+            "div",
+            { "className": "listObject" },
+            React.createElement("img", { className: "labelInfo", src: profileURL }),
+            React.createElement(
+              "h2",
+              null,
+              "Find me on GitHub: gromkii"
+            )
           )
         );
       }
     });
 
     ReactDOM.render(React.createElement(ContactPage, null), document.getElementById('mainSection'));
+    $('.lists').hide().fadeIn('slow');
   });
-
 }
 
 function generatePreviews(resultsArray) {
@@ -138,8 +145,8 @@ function generatePreviews(resultsArray) {
           if (element.hasOwnProperty('images')) {
             return React.createElement(
               "div",
-              { className: "previewObject" },
-              React.createElement("img", { className: "preview", src: element.images.squareMedium }),
+              { className: "previewObject",id:element.id },
+              React.createElement("img", { className: "preview", src: element.images.squareMedium}),
               React.createElement(
                 "h3",
                 null,
@@ -149,11 +156,10 @@ function generatePreviews(resultsArray) {
           } else {
             return React.createElement(
               "div",
-              { className: "previewObject" },
+              { className: "previewObject",id:element.id},
               React.createElement(
-                "div",
-                { className: "preview" },
-                "No Preview"
+                "img",
+                { className: "preview",src:'images/beer.png'}
               ),
               React.createElement(
                 "h3",
@@ -168,9 +174,51 @@ function generatePreviews(resultsArray) {
   });
 
   ReactDOM.render(React.createElement(ImageSection, null), document.getElementById('mainSection'));
+
   $('.images').hide().fadeIn('slow');
+
+  $('.previewObject').on('click',function(){
+    var clickedLogo = $(this).children();
+    var moreInfo = $.ajax({
+      type:'GET',
+      dataType:'json',
+      url: 'https://dax-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/brewery/' + $(this).attr('id') +'/beers?withBreweries&key=44665a51583c7e1afe237d1dfa5c45b9&format=json/'
+    }).done(function(data){
+      breweryArray = data.data;
+      generateBreweryInfo(breweryArray,resultsArray);
+    });
+  });
 }
 
-function generateBreweryInfo(){
+function generateBreweryInfo(breweryArray,resultsArray){
+  $('section').fadeOut('slow');
+  var BreweryInfo = React.createClass({
+    render: function () {
+      return React.createElement(
+        "section",
+        { className: "lists" },
+        React.createElement("img", { src:'images/beer.png' }),
+        React.createElement(
+          "ul",
+          null,
+          breweryArray.map(function (element) {
+            return React.createElement(
+              "li",
+              null,
+              element.name
+            );
+          })
+        ),
+        React.createElement("div", {className:"backButton"},"Go Back")
+      );
+    }
+  });
+  ReactDOM.render(React.createElement(BreweryInfo,null), document.getElementById('mainSection'));
+  $('.backButton').on('click',function(){
+    generatePreviews(resultsArray);
+  });
+  $('.lists').hide().fadeIn('slow');
+
+
 
 }

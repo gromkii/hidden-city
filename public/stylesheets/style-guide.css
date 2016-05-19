@@ -47,7 +47,10 @@ h3 {
   box-sizing: border-box;
   align-items: center;
   justify-content: center; }
-  .lists h3 {
+  .lists .listObject {
+    align-items: center;
+    justify-content: center; }
+  .lists h3, .lists h2 {
     color: #575761;
     letter-spacing: 1.5px;
     margin-left: 15px;
@@ -79,13 +82,14 @@ h3 {
   .lists .backButton {
     background-color: #ed6a5a;
     color: #e6ebe0;
-    width: 50px;
+    width: 20%;
     border-radius: 10%;
     padding: 5px;
     text-align: center;
     float: right;
     align-self: flex-end;
-    transition: all ease 500ms; }
+    transition: all ease 500ms;
+    cursor: default; }
     .lists .backButton:hover {
       background-color: #5ca4a9; }
     .lists .backButton:after {

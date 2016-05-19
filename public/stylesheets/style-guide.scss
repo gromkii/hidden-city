@@ -76,7 +76,12 @@ h3 {
   align-items: center;
   justify-content: center;
 
-  h3 {
+  .listObject{
+    align-items:center;
+    justify-content: center;
+  }
+
+  h3,h2 {
     color:$color3;
     letter-spacing: 1.5px;
     margin-left:15px;
@@ -124,13 +129,14 @@ h3 {
   .backButton {
     background-color:$color1;
     color:$color5;
-    width:50px;
+    width:20%;
     border-radius: 10%;
     padding:5px;
     text-align: center;
     float:right;
     align-self: flex-end;
     transition: all ease 500ms;
+    cursor: default;
 
      &:hover {
        background-color: $color4

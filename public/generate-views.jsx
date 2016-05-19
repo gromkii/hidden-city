@@ -1,15 +1,16 @@
-function generateContactPage(){
-  var ContactPage = React.createClass({
+function generateBreweryInfo(breweryArray){
+  var BreweryInfo = React.createClass({
     render:function(){
-      return(
+      return (
         <section className="lists">
-          <img className = "labelInfo" src={profileURL} />
-
-          <h2>Find me on GitHub: gromkii</h2>
+        <img src="the thing" />
+        <ul>
+        {breweryArray.map(function(element){
+            return (<li>{element.name}</li>);
+          })}
+        </ul>
         </section>
       );
     }
   });
-
-  ReactDOM.render(<ContactPage />, document.getElementById('mainSection'));
 }
