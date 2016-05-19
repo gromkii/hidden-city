@@ -23,7 +23,7 @@ function initialSearch(event){
   });
 
 
-  var firstQuery = 'http://dax-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/search?q='+ searchItem +'&withLocations=Y&type=brewery&key=44665a51583c7e1afe237d1dfa5c45b9&format=json';
+  var firstQuery = 'https://dax-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/search?q='+ searchItem +'&withLocations=Y&type=brewery&key=44665a51583c7e1afe237d1dfa5c45b9&format=json';
 
   var ajaxTest = $.ajax({
     type:'GET',
@@ -125,4 +125,8 @@ function generatePreviews(resultsArray) {
 
   ReactDOM.render(React.createElement(ImageSection, null), document.getElementById('mainSection'));
   $('.images').hide().fadeIn('slow');
+}
+
+function generateBreweryInfo(){
+
 }
