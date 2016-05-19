@@ -118,7 +118,12 @@ function generateContactPage(){
             React.createElement(
               "h2",
               null,
-              "Find me on GitHub: gromkii"
+              "GitHub: gromkii"
+            ),
+            React.createElement(
+              "h2",
+              null,
+              "Twitter: @v3rsac3raptor"
             )
           )
         );
@@ -159,7 +164,7 @@ function generatePreviews(resultsArray) {
               { className: "previewObject",id:element.id},
               React.createElement(
                 "img",
-                { className: "preview",src:'images/beer.png'}
+                { className: "preview",src:'images/beer.png',}
               ),
               React.createElement(
                 "h3",
@@ -177,27 +182,36 @@ function generatePreviews(resultsArray) {
 
   $('.images').hide().fadeIn('slow');
 
-  $('.previewObject').on('click',function(){
-    var clickedLogo = $(this).children();
+
+
+  $('.previewObject').on('click','img',function(event){
+    var clickedLogo = $(this).attr('src');
+    console.log(clickedLogo);
+
     var moreInfo = $.ajax({
       type:'GET',
       dataType:'json',
-      url: 'https://dax-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/brewery/' + $(this).attr('id') +'/beers?withBreweries&key=44665a51583c7e1afe237d1dfa5c45b9&format=json/'
+      url: 'https://dax-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/brewery/' + $(this.parentNode).attr('id') +'/beers?withBreweries&key=44665a51583c7e1afe237d1dfa5c45b9&format=json/'
     }).done(function(data){
       breweryArray = data.data;
-      generateBreweryInfo(breweryArray,resultsArray);
+      generateBreweryInfo(breweryArray,resultsArray,clickedLogo);
     });
   });
 }
 
-function generateBreweryInfo(breweryArray,resultsArray){
+function generateBreweryInfo(breweryArray,resultsArray,clickedLogo){
+
+  //TODO: Get this img.src and this name!!
+
   $('section').fadeOut('slow');
   var BreweryInfo = React.createClass({
     render: function () {
       return React.createElement(
         "section",
         { className: "lists" },
-        React.createElement("img", { src:'images/beer.png' }),
+        React.createElement("div",{className:"listObject"},
+        React.createElement("img", { src:clickedLogo, className:"labelInfo" }),
+        React.createElement("h2",null,"Beer Listing"),
         React.createElement(
           "ul",
           null,
@@ -208,7 +222,9 @@ function generateBreweryInfo(breweryArray,resultsArray){
               element.name
             );
           })
-        ),
+        )
+      ),
+
         React.createElement("div", {className:"backButton"},"Go Back")
       );
     }
