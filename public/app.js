@@ -35,34 +35,39 @@ function initialSearch(event){
 //Pushes the IDs of the search results back to the array "resultsArray" for use later.
 function pushData(data){
   var resultsArray = data.data;
-
-  $('<section class="images">').appendTo('main').hide().fadeIn('slow');
-
-  resultsArray.forEach(generateBeerPreview);
-
-  $('</section>').appendTo('main');
-
-  $('.images').on('click','.previewObject',getBeerInfo);
-
-
-}
-
-function generateBeerPreview(element, index){
-  setTimeout(function(){
-    var self = element.id;
-    $('<div class="previewObject" id="' + self + '">').appendTo('.images').hide().fadeIn('slow');
-    if (element.hasOwnProperty('images')) {
-      $('<img class="preview" src="' + element.images.squareMedium +'">').appendTo('#' + self);
-    } else {
-      $('<div class="preview">No Preview</div>').appendTo('#' + self);
-    }
-    $('<h3>' + element.name + '</h3>').appendTo('#' + self);
-    $('</div>').appendTo(self);
-
-  }, index * 200);
+  generatePreviews(resultsArray);
 }
 
 function generateHomePage(){
+  $('section').fadeOut('slow');
+
+  var HomePage = React.createClass({
+    render: function () {
+      return React.createElement(
+        "section",
+        { "className": "landing", id: "searchLanding" },
+        React.createElement(
+          "h1",
+          null,
+          "Hidden City Brews"
+        ),
+        React.createElement(
+          "h2",
+          null,
+          "Where do you wanna go?"
+        ),
+        React.createElement(
+          "form",
+          { id: "searchForm" },
+          React.createElement("input", { type: "text", id: "searchItem", name: "searchField" })
+        )
+      );
+    }
+  });
+
+  ReactDOM.render(React.createElement(HomePage, null), document.getElementById('mainSection'));
+  $('form').on('submit', initialSearch);
+  $('.landing').hide().fadeIn('slow');
 
 }
 
@@ -74,14 +79,50 @@ function generateContactPage(){
 
 }
 
-function getBeerInfo(event){
- var getId = $(this).attr('id'),
-     beerQuery = 'http://dax-cors-anywhere.herokuapp.com/https://api.brewerydb.com/v2/brewery/'+ getId +'/beers?key=44665a51583c7e1afe237d1dfa5c45b9&format=json',
-     infoQuery = $.ajax({
-       type:'GET',
-       dataType:'json',
-       url:beerQuery
-     }).done(function(data){
-       console.log(data); //data.data is an array.
-     });
+function generatePreviews(resultsArray) {
+  //create a new section
+  renderArray = [];
+
+  console.log(resultsArray);
+
+  var ImageSection = React.createClass({
+    render: function () {
+      return React.createElement(
+        "section",
+        { className: "images" },
+        resultsArray.map(function (element) {
+          if (element.hasOwnProperty('images')) {
+            return React.createElement(
+              "div",
+              { className: "previewObject" },
+              React.createElement("img", { className: "preview", src: element.images.squareMedium }),
+              React.createElement(
+                "h3",
+                null,
+                element.name
+              )
+            );
+          } else {
+            return React.createElement(
+              "div",
+              { className: "previewObject" },
+              React.createElement(
+                "div",
+                { className: "preview" },
+                "No Preview"
+              ),
+              React.createElement(
+                "h3",
+                null,
+                element.name
+              )
+            );
+          }
+        })
+      );
+    }
+  });
+
+  ReactDOM.render(React.createElement(ImageSection, null), document.getElementById('mainSection'));
+  $('.images').hide().fadeIn('slow');
 }

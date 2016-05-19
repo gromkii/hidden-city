@@ -171,4 +171,7 @@ h3 {
         background-color: #ed6a5a;
         cursor: default; }
 
+.backButton {
+  align-self: flex-end; }
+
 /*# sourceMappingURL=style-guide.css.map */
