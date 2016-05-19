@@ -72,10 +72,54 @@ function generateHomePage(){
 }
 
 function generateAboutPage(){
+  $('section').fadeOut('slow');
 
+  var AboutPage = React.createClass({
+    render: function () {
+      return React.createElement(
+        "section",
+        { className: "lists" },
+        React.createElement("img", {src: "./images/logo.png" }),
+        React.createElement(
+          "p",
+          null,
+          "Hidden City Brews is a single page web application created by Dax Richardson. Using the BreweryDB API, ReactJS, and jQuery, users are able to search for breweries, and then retrieve a list of beers from that particular brewery. This project was created for educational purposes, and not inteded for commercial use!"
+        )
+      );
+    }
+  });
+
+  ReactDOM.render(React.createElement(AboutPage, null), document.getElementById('mainSection'));
+  $('.lists').hide().fadeIn('slow');
 }
 
 function generateContactPage(){
+  var profileURL;
+  var githubProfile = $.ajax({
+    type:'GET',
+    dataType:'json',
+    url:'https://api.github.com/users/gromkii'
+  }).done(function(data){
+    profileURL = data.avatar_url;
+
+    //Do React stuff.
+    var ContactPage = React.createClass({
+      render: function () {
+        return React.createElement(
+          "section",
+          { className: "lists" },
+          React.createElement("img", { className: "labelInfo", src: profileURL }),
+          React.createElement(
+            "h2",
+            null,
+            "Find me on GitHub: gromkii"
+          )
+        );
+      }
+    });
+
+    ReactDOM.render(React.createElement(ContactPage, null), document.getElementById('mainSection'));
+  });
 
 }
 
