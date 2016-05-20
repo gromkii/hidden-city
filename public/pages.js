@@ -28,7 +28,7 @@ var pages = {
     if (data.hasOwnProperty('data')){
       pages.generatePreviews(resultsArray);
     } else {
-      $('section').fadeOut('slow',generateErrorPage);
+      $('section').fadeOut('slow',pages.generateErrorPage);
     }
   },
 
