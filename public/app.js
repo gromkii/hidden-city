@@ -36,7 +36,12 @@ function initialSearch(event){
 //Pushes the IDs of the search results back to the array "resultsArray" for use later.
 function pushData(data){
   var resultsArray = data.data;
-  generatePreviews(resultsArray);
+
+  if (data.hasOwnProperty('data')){
+    generatePreviews(resultsArray);
+  } else {
+    $('section').fadeOut('slow',generateErrorPage);
+  }
 }
 
 function generateHomePage(){
@@ -110,11 +115,11 @@ function generateContactPage(){
       render: function () {
         return React.createElement(
           "section",
-          { className: "lists" },
+          { className: "contactPage" },
           React.createElement(
             "div",
-            { "className": "listObject" },
-            React.createElement("img", { className: "labelInfo", src: profileURL }),
+            { "className": "contactObject" },
+            React.createElement("img", { src: profileURL }),
             React.createElement(
               "h2",
               null,
@@ -136,11 +141,6 @@ function generateContactPage(){
 }
 
 function generatePreviews(resultsArray) {
-  //create a new section
-  renderArray = [];
-
-  console.log(resultsArray);
-
   var ImageSection = React.createClass({
     render: function () {
       return React.createElement(
@@ -237,4 +237,19 @@ function generateBreweryInfo(breweryArray,resultsArray,clickedLogo){
 
 
 
+}
+
+function generateErrorPage(){
+  var ErrorPage = React.createClass({
+    render:function(){
+      return (
+        React.createElement("section",{className:"contactPage"},
+
+          React.createElement("div",{className:"contactObject"},
+          React.createElement('h2',null,"Something went wrong!")
+        ))
+      );
+    }
+  });
+  ReactDOM.render(React.createElement(ErrorPage, null),document.getElementById('mainSection'));
 }

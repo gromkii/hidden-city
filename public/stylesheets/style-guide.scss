@@ -75,6 +75,7 @@ h3 {
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
 
   .listObject{
     align-items:center;
@@ -276,4 +277,41 @@ h3 {
 .backButton {
 
   align-self: flex-end;
+}
+
+
+
+
+.contactPage {
+  height:95vh;
+  width:100%;
+  box-sizing: border-box;
+  background-color:$color5;
+
+
+  .contactObject{
+    height:100%;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h3,h2 {
+      color:$color3;
+      letter-spacing: 1.5px;
+      margin-left:15px;
+      text-align: left;
+      margin-top:5px;
+      margin:0 auto;
+
+    }
+
+    img {
+      height:500px;
+      width:500px;
+      float:left;
+
+    }
+  }
 }

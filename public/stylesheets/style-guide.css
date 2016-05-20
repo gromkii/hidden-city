@@ -46,7 +46,8 @@ h3 {
   display: flex;
   box-sizing: border-box;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  overflow: scroll; }
   .lists .listObject {
     align-items: center;
     justify-content: center;
@@ -185,5 +186,29 @@ h3 {
 
 .backButton {
   align-self: flex-end; }
+
+.contactPage {
+  height: 95vh;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #e6ebe0; }
+  .contactPage .contactObject {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+    .contactPage .contactObject h3, .contactPage .contactObject h2 {
+      color: #575761;
+      letter-spacing: 1.5px;
+      margin-left: 15px;
+      text-align: left;
+      margin-top: 5px;
+      margin: 0 auto; }
+    .contactPage .contactObject img {
+      height: 500px;
+      width: 500px;
+      float: left; }
 
 /*# sourceMappingURL=style-guide.css.map */
